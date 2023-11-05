@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
+use App\Models\User;
+use App\Models\Role;
 class UserFactory extends Factory
 {
     /**
@@ -15,14 +17,17 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = User::class;
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => bcrypt('password'), // Hashea la contraseña 'password'
             'remember_token' => Str::random(10),
+            'role_id' => Role::inRandomOrder()->first()->id, // Puedes personalizar esto según tus necesidades
+            'active' => true, // Puedes cambiar esto según tus necesidades
         ];
     }
 
