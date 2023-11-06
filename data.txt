@@ -11,12 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('incidents', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name', 150);
+            $table->uuid('employee_id');
+            $table->uuid('item_id');
+            $table->uuid('user_id');
+            $table->uuid('ticket_id');
+            $table->text('description');
+            $table->dateTime('incident_date');
             $table->boolean('active')->default(true);
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->enum('status', ['Pendiente', 'Revisado', 'Anulado'])->default('Pendiente');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -25,7 +35,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('incidents');
     }
 };
 <?php
@@ -41,19 +51,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('name', 150);
+            $table->boolean('active')->default(true);
             $table->timestamps();
-            $table->uuid('role_id')->nullable();
-            $table->boolean('active')->default(false);
             $table->softDeletes();
-
-            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
@@ -62,7 +65,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('roles');
     }
 };
 <?php
@@ -110,18 +113,18 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
             $table->uuid('category_id');
             $table->string('title', 250);
             $table->mediumText('description');
-            $table->string('status', 15)->nullable();
+            $table->enum('status', [
+                'Pendiente', 'En Proceso', 'Resuelto', 'Cerrado'
+            ])->default('Pendiente');
             $table->uuid('assigned_user')->nullable();
             $table->dateTime('assigned_at')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('assigned_user')->references('id')->on('users');
         });
@@ -151,14 +154,12 @@ return new class extends Migration
         Schema::create('ticket_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('ticket_id');
-            $table->uuid('user_id');
             $table->mediumText('description');
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
             
             $table->foreign('ticket_id')->references('id')->on('tickets');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -168,39 +169,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('ticket_details');
-    }
-};
-<?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('documents', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('ticket_id');
-            $table->string('name', 400);
-            $table->boolean('active')->default(true);
-            $table->timestamps();
-            $table->softDeletes();
-            $table->string('file')->nullable();
-            $table->foreign('ticket_id')->references('id')->on('tickets');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('documents');
     }
 };
 <?php
@@ -283,18 +251,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('incidents', function (Blueprint $table) {
+        Schema::create('documents', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('employee_id');
-            $table->uuid('item_id');
-            $table->text('description');
-            $table->dateTime('incident_date');
+            $table->uuid('incident_id');
+            $table->string('name', 400);
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
-            $table->enum('status', ['Pendiente', 'Revisado', 'Anulado'])->default('Pendiente');
-            $table->foreign('employee_id')->references('id')->on('employees');
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->string('file')->nullable();
+            $table->foreign('incident_id')->references('id')->on('incidents');
         });
     }
 
@@ -303,6 +268,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('incidents');
+        Schema::dropIfExists('documents');
     }
 };

@@ -1,5 +1,5 @@
 
-@extends('base')
+@extends('layouts.base')
 
 @section('title', 'Panel de Control')
 

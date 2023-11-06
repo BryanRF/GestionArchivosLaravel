@@ -21,7 +21,6 @@ class TicketFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id, // Asocia un usuario existente o crea uno nuevo y obtén su ID
             'category_id' => Category::inRandomOrder()->first()->id, // Asocia una categoría existente o crea una nueva y obtén su ID
             'title' => $this->faker->sentence, // Genera una oración aleatoria
             'description' => $this->faker->paragraph, // Genera un párrafo de texto aleatorio

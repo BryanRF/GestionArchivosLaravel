@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('ticket_id');
+            $table->uuid('incident_id');
             $table->string('name', 400);
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
             $table->string('file')->nullable();
-            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->foreign('incident_id')->references('id')->on('incidents');
         });
     }
 

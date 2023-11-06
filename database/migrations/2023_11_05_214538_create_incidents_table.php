@@ -15,14 +15,18 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('employee_id');
             $table->uuid('item_id');
+            $table->uuid('user_id');
+            $table->uuid('ticket_id');
             $table->text('description');
             $table->dateTime('incident_date');
             $table->boolean('active')->default(true);
+            $table->enum('status', ['Pendiente', 'Revisado', 'Anulado'])->default('Pendiente');
             $table->timestamps();
             $table->softDeletes();
-            $table->enum('status', ['Pendiente', 'Revisado', 'Anulado'])->default('Pendiente');
+            $table->foreign('ticket_id')->references('id')->on('tickets');
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

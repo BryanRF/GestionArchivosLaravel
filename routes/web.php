@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataTables\IncidentDataTables;
+use App\Http\Controllers\IncidentController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/incidents/datatables', [IncidentDataTables::class, 'index'])->name('incidents.datatables');
+Route::get('/show/ticket/{id}', [TicketController::class, 'show'])->name('show.ticket');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,6 +27,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/incidencias', function () {
+    return view('incidencias.index');
+})->middleware(['auth', 'verified'])->name('incidencias');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

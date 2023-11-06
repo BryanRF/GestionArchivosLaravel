@@ -53,8 +53,8 @@ class Ticket extends Model
         return $this->hasMany(TicketDetail::class, 'ticket_id');
     }
 
-    public function documents()
+    public function incident()
     {
-        return $this->hasMany(Document::class, 'ticket_id');
+        return $this->hasMany(Incident::class);
     }
 }

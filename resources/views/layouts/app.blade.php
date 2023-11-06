@@ -33,4 +33,10 @@
             </main>
         </div>
     </body>
+    <script>if (localStorage.getItem("dark") === "1") {
+        document.querySelector("html").classList.add("dark");
+      }
+    localStorage.dark = 0;
+    document.querySelector("html").classList.remove("dark");
+    </script>
 </html>

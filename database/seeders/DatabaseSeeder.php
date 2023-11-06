@@ -28,10 +28,10 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             TicketsTableSeeder::class,
             TicketDetailsTableSeeder::class,
-            DocumentsTableSeeder::class,
             EmployeesTableSeeder::class,
             ItemsTableSeeder::class,
             IncidentsTableSeeder::class,
+            DocumentsTableSeeder::class,
         ]);
     }
 }

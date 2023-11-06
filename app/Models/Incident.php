@@ -31,13 +31,26 @@ class Incident extends Model
             $model->id = (string) Str::uuid();
         });
     }
-    public function employee()
+    public function user()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(User::class);
     }
 
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
     public function item()
     {
-        return $this->belongsTo(Item::class, 'item_id');
+        return $this->belongsTo(Item::class);
+    }
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
     }
 }

@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
             $table->uuid('category_id');
             $table->string('title', 250);
             $table->mediumText('description');
-            $table->string('status', 15)->nullable();
+            $table->enum('status', [
+                'Pendiente', 'En Proceso', 'Resuelto', 'Cerrado'
+            ])->default('Pendiente');
             $table->uuid('assigned_user')->nullable();
             $table->dateTime('assigned_at')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('assigned_user')->references('id')->on('users');
         });
