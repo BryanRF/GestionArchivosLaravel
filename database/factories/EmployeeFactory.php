@@ -19,12 +19,16 @@ class EmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name, // Genera un nombre aleatorio
-            'position' => $this->faker->jobTitle, // Genera un cargo aleatorio
+            'name' => $this->faker->name,
+            'dni' => $this->faker->regexify('[0-9]{12}'),
+            'position' => $this->faker->jobTitle,
             'user_id' => function () {
-                return User::inRandomOrder()->first()->id; // Asocia un usuario existente o crea uno nuevo y obtén su ID
+                return User::inRandomOrder()->first()->id;
             },
-            'active' => $this->faker->boolean(80) // Genera un valor booleano (80% de probabilidad de ser verdadero)
+            'active' => $this->faker->boolean(80),
+            'address' => $this->faker->address,
+            'phone' => $this->faker->phoneNumber,
+            'birthdate' => $this->faker->date('Y-m-d', '-18 years')
         ];
     }
 }

@@ -7,7 +7,7 @@
         <div class="container-fluid p-0">
 			<div class="d-flex justify-content-between align-items-center">
 				<h1 class="h3 mb-3 text-start">Ticket de Incidencia</h1>
-				<a href="{{route('incidencias')}}" class="btn btn-danger text-end">Regresar</a>
+				<a href="{{route('incidencias.index')}}" class="btn btn-danger text-end">Regresar</a>
 			</div>
 
 

@@ -11,7 +11,7 @@
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="{{ asset('img/icons/icon-48x48.png')}}" />
+    <link rel="shortcut icon" href="{{ asset('img/logo.svg') }}" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
@@ -51,38 +51,28 @@
                                 class="align-middle">Dashboard</span>
                         </a>
                     </li>
-
-
-
                     <li class="sidebar-item">
-                        <a class="sidebar-link"  href="{{route('incidencias')}}">
+                        <a class="sidebar-link"  href="{{route('incidencias.index')}}">
                             <i class="align-middle" data-feather="align-left"></i> <span
                                 class="align-middle">Incidencias</span>
                         </a>
                     </li>
-
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="icons-feather.html">
-                            <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
+                        <a class="sidebar-link"  href="{{route('incidencias.index')}}">
+                            <i class="align-middle" data-feather="align-left"></i> <span
+                                class="align-middle">Personal</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link"  href="{{route('incidencias.index')}}">
+                            <i class="align-middle" data-feather="align-left"></i> <span
+                                class="align-middle">Usuarios</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-header">
-                        Plugins & Addons
-                    </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="charts-chartjs.html">
-                            <i class="align-middle" data-feather="bar-chart-2"></i> <span
-                                class="align-middle">Charts</span>
-                        </a>
-                    </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="maps-google.html">
-                            <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-                        </a>
-                    </li>
+
                 </ul>
 
 
