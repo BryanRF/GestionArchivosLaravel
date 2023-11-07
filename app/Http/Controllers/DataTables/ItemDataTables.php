@@ -9,11 +9,11 @@ class ItemDataTables extends Controller
 {
     public function index()
     {
-        $items = Item::all();
+        $items = Item::with('category')->get();
 
         return datatables()->collection($items)
             ->addColumn('actions', function ($item) {
-                return '<button class="btn btn-sm btn-primary">Ver</button>';
+                return '<button class="btn btn-sm btn-primary " onclick=\'SeleccionarItem("'.$item->id.'","'.$item->name.'")\'>Seleccionar</button>';
             })
             ->rawColumns(['actions'])
             ->toJson();

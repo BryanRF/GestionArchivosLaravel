@@ -6,7 +6,7 @@ t = $("#incidents-table").DataTable({
         { data: "employee.name", name: "employee.name" },
         { data: "item.name", name: "item.name" },
         { data: "show_ticket", name: "show_ticket" },
-        { data: "status", name: "status" },
+        { data: "status_badge", name: "status_badge" },
         {
             data: "actions",
             name: "actions",

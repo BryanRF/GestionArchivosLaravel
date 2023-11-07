@@ -9,7 +9,7 @@
     <meta name="author" content="AdminKit">
     <meta name="keywords"
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="{{ asset('img/logo.svg') }}" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -18,12 +18,16 @@
     <title>@yield('title')</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.7/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/r-2.5.0/sp-2.2.0/sl-1.7.0/datatables.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.7/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/r-2.5.0/sp-2.2.0/sl-1.7.0/datatables.min.css"
+        rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.7/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/r-2.5.0/sp-2.2.0/sl-1.7.0/datatables.min.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.7/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/r-2.5.0/sp-2.2.0/sl-1.7.0/datatables.min.js">
+    </script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="{{ asset('js/script.js') }}"></script>
@@ -46,25 +50,25 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link"  href="{{route('dashboard')}}">
+                        <a class="sidebar-link" href="{{ route('dashboard') }}">
                             <i class="align-middle" data-feather="sliders"></i> <span
                                 class="align-middle">Dashboard</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link"  href="{{route('incidencias.index')}}">
+                        <a class="sidebar-link" href="{{ route('incidencias.index') }}">
                             <i class="align-middle" data-feather="align-left"></i> <span
                                 class="align-middle">Incidencias</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link"  href="{{route('incidencias.index')}}">
+                        <a class="sidebar-link" href="{{ route('incidencias.index') }}">
                             <i class="align-middle" data-feather="align-left"></i> <span
                                 class="align-middle">Personal</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link"  href="{{route('incidencias.index')}}">
+                        <a class="sidebar-link" href="{{ route('incidencias.index') }}">
                             <i class="align-middle" data-feather="align-left"></i> <span
                                 class="align-middle">Usuarios</span>
                         </a>
@@ -242,8 +246,12 @@
 
                             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
                                 data-bs-toggle="dropdown">
-                                <img src="{{ asset('img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-1"
-                                    alt="User" /> <span class="text-dark">{{ auth()->user()->name }}</span>
+                                <img src="{{ asset('img/avatars/avatar.jpg') }}"
+                                    class="avatar img-fluid rounded me-1" alt="User" />
+                                @if (auth()->check())
+                                    <span class="text-dark">{{ auth()->user()->name }}</span>
+                                @endif
+
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"

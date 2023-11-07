@@ -24,7 +24,7 @@
                                         <th>Descripción</th>
                                         <th>Empleado</th>
                                         <th>Ítem</th>
-                                        <th>Ticket</th>
+                                        <th class=" no-export">Ticket</th>
                                         <th>Estado</th>
                                         <th class=" no-export">Acciones</th>
                                     </tr>

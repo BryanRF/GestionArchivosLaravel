@@ -15,7 +15,7 @@ class DocumentsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DocumentFactory::times(15)->create();
+        DocumentFactory::times(5)->create();
     }
 }
 

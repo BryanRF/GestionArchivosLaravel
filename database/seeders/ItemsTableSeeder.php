@@ -15,6 +15,6 @@ class ItemsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        ItemFactory::times(15)->create();
+        ItemFactory::times(5)->create();
     }
 }

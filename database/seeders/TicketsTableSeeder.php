@@ -15,6 +15,6 @@ class TicketsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        TicketFactory::times(15)->create();
+        TicketFactory::times(5)->create();
     }
 }

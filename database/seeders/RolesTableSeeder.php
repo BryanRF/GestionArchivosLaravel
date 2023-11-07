@@ -13,8 +13,8 @@ class RolesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        
-        RoleFactory::times(15)->create();
-      
+
+        RoleFactory::times(5)->create();
+
     }
 }

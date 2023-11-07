@@ -10,10 +10,10 @@ class EmployeeDataTables extends Controller
     public function index()
     {
         $employees = Employee::all();
-
         return datatables()->collection($employees)
             ->addColumn('actions', function ($employee) {
-                return '<button class="btn btn-sm btn-primary">Ver</button>';
+                return '<button class="btn btn-sm btn-primary " onclick=\'SeleccionarEmpleados("'.$employee->id.'","'.$employee->name.'")\'>Seleccionar</button>';
+
             })
             ->rawColumns(['actions'])
             ->toJson();

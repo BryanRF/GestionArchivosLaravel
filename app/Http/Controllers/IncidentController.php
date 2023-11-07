@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Incident;
 
@@ -17,7 +18,8 @@ class IncidentController extends Controller
 
     public function create()
     {
-        return view('incidents.create');
+        $category = Category::all();
+        return view('incidents.create',compact('category'));
     }
 
 

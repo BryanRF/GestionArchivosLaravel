@@ -14,6 +14,6 @@ class TicketDetailsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        TicketDetailFactory::times(15)->create();
+        TicketDetailFactory::times(5)->create();
     }
 }

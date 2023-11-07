@@ -15,44 +15,77 @@
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title mb-0">Registrar nueva Incidentes</h5>
+
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('incidencias.store') }}" method="POST">
+                            <form id="form-incidencia" class="row">
                                 @csrf
-                                <div class="mb-3">
+                                <div class="mb-3 col-12 col-md-6">
                                     <label for="employee_id" class="form-label">Empleado</label>
-                                    <input type="text" class="form-control" id="employee_id" name="employee_id">
-                                    <button class="btn btn-primary mt-2" type="button" id="verEmpleados">Ver Lista de Empleados</button>
+                                    <div class="input-group">
+                                        <input type="hidden" class="form-control" value="{{ auth()->user()->id }}"
+                                            name="qwec8a4s81c818e51">
+                                        <input type="hidden" class="form-control" id="employee_id" name="employee_id"
+                                            required>
+                                        <input type="text" class="form-control" id="employee_aux" readonly required>
+                                        <button class="btn btn-info" type="button" id="verEmpleados">Lista de
+                                            Empleados</button>
+                                    </div>
                                 </div>
-
-                                <div class="mb-3">
+                                <div class="mb-3 col-12 col-md-6">
                                     <label for="item_id" class="form-label">Item</label>
-                                    <input type="text" class="form-control" id="item_id" name="item_id">
-                                    <button class="btn btn-primary mt-2" type="button"  id="verItems">Ver Lista de Items</button>
+                                    <div class="input-group">
+                                        <input type="hidden" class="form-control" id="item_id" name="item_id" required>
+                                        <input type="text" class="form-control" id="item_aux" readonly required>
+                                        <button class="btn btn-info" type="button" id="verItems">Lista de
+                                            Items</button>
+                                    </div>
                                 </div>
-
-
-                                <div class="mb-3">
+                                <div class="mb-3 col-12 col-md-6">
                                     <label for="description" class="form-label">Descripción</label>
-                                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                                 </div>
-
-                                <div class="mb-3">
+                                <div class="mb-3 col-12 col-md-6">
                                     <label for="incident_date" class="form-label">Fecha de Incidente</label>
-                                    <input type="datetime-local" class="form-control" id="incident_date"
+                                    <input type="datetime-local" class="form-control" id="incident_date" required
                                         name="incident_date">
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="status" class="form-label">Estado</label>
-                                    <select class="form-select" id="status" name="status">
-                                        <option value="Pendiente">Pendiente</option>
-                                        <option value="Revisado">Revisado</option>
-                                        <option value="Anulado">Anulado</option>
+                                <div class="mb-3 col-12">
+                                    <h5 class="card-title mb-0">Documentos</h5>
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label for="file" class="form-label">Evidencias</label>
+                                    <input type="file" class="form-control" id="file" name="file" required>
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label for="name_file" class="form-label">Descripcion Evidencias</label>
+                                    <input type="text" class="form-control" id="name_file" name="name_file" required>
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <h5 class="card-title mb-0">Ticket</h5>
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label for="category_id" class="form-label">Categoría</label>
+                                    <select class="form-select" id="category_id" name="category_id" required>
+                                        @foreach ($category as $cat)
+                                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label for="title" class="form-label">Asunto</label>
+                                    <input type="text" class="form-control" id="title_ticket" name="title_ticket"
+                                        required>
+                                </div>
 
-                                <button type="submit" class="btn btn-primary">Crear Incidencia</button>
+                                <div class="mb-3 col-12">
+                                    <label for="description" class="form-label">Descripción</label>
+                                    <textarea class="form-control" id="description_ticket" name="description_ticket" required rows="3"></textarea>
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <button type="submit" class="btn btn-primary">Crear Incidencia</button>
+                                </div>
+
                             </form>
 
 
@@ -66,7 +99,8 @@
     <script>
         const url_empleados = '{!! route('employees.datatables') !!}';
         const url_items = '{!! route('items.datatables') !!}';
-        const url_store = '{!! route('incidents.datatables') !!}';
+        const url_store = '{!! route('incident.api.store') !!}';
+        const url_lista = '{!! route('incidencias.index') !!}';
     </script>
     <script src="{{ asset('js/create_incidencias.js') }}"></script>
 

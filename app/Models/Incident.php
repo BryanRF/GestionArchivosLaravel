@@ -14,15 +14,7 @@ class Incident extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $fillable = [
-        'id',
-        'employee_id',
-        'item_id',
-        'description',
-        'incident_date',
-        'status',
-        'active',
-    ];
+
     protected static function boot()
     {
         parent::boot();

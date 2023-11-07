@@ -15,6 +15,6 @@ class IncidentsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        IncidentFactory::times(15)->create();
+        IncidentFactory::times(5)->create();
     }
 }

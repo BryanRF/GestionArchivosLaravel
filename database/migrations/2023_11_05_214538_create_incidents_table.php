@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('employee_id');
-            $table->uuid('item_id');
-            $table->uuid('user_id');
-            $table->uuid('ticket_id');
-            $table->text('description');
+            $table->uuid('employee_id')->nullable();
+            $table->uuid('item_id')->nullable();
+            $table->uuid('user_id')->nullable();
+            $table->uuid('ticket_id')->nullable();
+            $table->text('description')->nullable();
             $table->dateTime('incident_date');
             $table->boolean('active')->default(true);
             $table->enum('status', ['Pendiente', 'Revisado', 'Anulado'])->default('Pendiente');

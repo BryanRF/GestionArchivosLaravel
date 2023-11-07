@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('incident_id');
-            $table->string('name', 400);
+            $table->string('name', 600);
+            $table->string('icon')->default('bi bi-file-earmark');
+            $table->string('color')->default('btn btn-primary');
+            $table->string('tipo')->default('Archivo');
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();

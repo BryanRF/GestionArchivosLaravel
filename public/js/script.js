@@ -7,6 +7,17 @@ let day = new Date().toLocaleDateString('es-ES', {
 	second: 'numeric'
  }).replace(',', '').replace(/\//g, '-');
 
+ const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: false,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
  function copyText(text) {
     const input = document.createElement('input');
     input.setAttribute('value', text);
@@ -14,17 +25,7 @@ let day = new Date().toLocaleDateString('es-ES', {
     input.select();
     document.execCommand('copy');
     document.body.removeChild(input);
-    const Toast = Swal.mixin({
-toast: true,
-position: 'top-end',
-showConfirmButton: false,
-timer: 2000,
-timerProgressBar: false,
-didOpen: (toast) => {
-  toast.addEventListener('mouseenter', Swal.stopTimer)
-  toast.addEventListener('mouseleave', Swal.resumeTimer)
-}
-})
+
   Toast.fire({
   icon: 'success',
   title: 'Copiado correctamente'
