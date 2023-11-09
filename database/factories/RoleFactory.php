@@ -18,10 +18,13 @@ class RoleFactory extends Factory
      */
     public function definition(): array
     {
+//         $jobs = ['Desarrollador de Software', 'Diseñador Gráfico', 'Gerente de Proyectos', 'Analista de Datos'];
+        // $jobTitle = $this->faker->randomElement($jobs);
         return [
-            
-            'name' => $this->faker->word, // Genera un nombre aleatorio
-            'active' => true, // Genera un valor booleano (80% de probabilidad de ser verdadero)
+
+            'name' => $this->faker->jobTitle,
+            'active' => true,
+            'is_student' => $this->faker->boolean(80),
         ];
     }
 }

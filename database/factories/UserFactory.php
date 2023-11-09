@@ -26,7 +26,6 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt('password'), // Hashea la contraseña 'password'
             'remember_token' => Str::random(10),
-            'role_id' => Role::inRandomOrder()->first()->id, // Puedes personalizar esto según tus necesidades
             'active' => true, // Puedes cambiar esto según tus necesidades
         ];
     }

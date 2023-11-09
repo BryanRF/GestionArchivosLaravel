@@ -1,31 +1,22 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
-class TicketDetail extends Model
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
+class Student extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string';
-
-    protected $fillable = [
-        'id',
-        'ticket_id',
-        'user_id',
-        'description',
-        'active',
-    ];
     protected $guarded =[];
-    public function ticket()
-    {
-        return $this->belongsTo(Ticket::class, 'ticket_id');
-    }
     protected static function boot()
     {
         parent::boot();
@@ -34,8 +25,9 @@ class TicketDetail extends Model
             $model->id = (string) Str::uuid();
         });
     }
-    public function user()
+    public function role()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Role::class);
     }
+
 }

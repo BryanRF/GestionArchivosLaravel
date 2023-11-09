@@ -7,12 +7,12 @@ use Illuminate\Database\Seeder;
 
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\CategoriesTableSeeder;
-use Database\Seeders\TicketsTableSeeder;
-use Database\Seeders\TicketDetailsTableSeeder;
+
 use Database\Seeders\DocumentsTableSeeder;
 use Database\Seeders\RolesTableSeeder;
 use Database\Seeders\EmployeesTableSeeder;
 use Database\Seeders\ItemsTableSeeder;
+use Database\Seeders\StudentsTableSeeder;
 use Database\Seeders\IncidentsTableSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,9 +26,8 @@ class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             UsersTableSeeder::class,
             CategoriesTableSeeder::class,
-            TicketsTableSeeder::class,
-            TicketDetailsTableSeeder::class,
             EmployeesTableSeeder::class,
+            StudentsTableSeeder::class,
             ItemsTableSeeder::class,
             IncidentsTableSeeder::class,
             DocumentsTableSeeder::class,

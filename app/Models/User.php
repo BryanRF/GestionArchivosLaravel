@@ -49,14 +49,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
 
-    public function tickets()
+    public function incident()
     {
-        return $this->hasMany(Ticket::class, 'user_id');
+        return $this->hasMany(Incident::class, 'user_id');
     }
     protected static function boot()
     {

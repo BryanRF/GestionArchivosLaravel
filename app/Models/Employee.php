@@ -14,17 +14,11 @@ class Employee extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     protected $guarded =[];
-    protected $fillable = [
-        'id',
-        'name',
-        'position',
-        'user_id',
-        'active',
-    ];
+
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }protected static function boot()
     {
         parent::boot();
@@ -33,4 +27,9 @@ class Employee extends Model
             $model->id = (string) Str::uuid();
         });
     }
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
 }

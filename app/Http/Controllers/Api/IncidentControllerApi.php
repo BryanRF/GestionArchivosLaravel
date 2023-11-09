@@ -33,21 +33,12 @@ class IncidentControllerApi extends Controller
                 'employee_id' => $request->input('employee_id'),
                 'item_id' => $request->input('item_id'),
                 'user_id' => $request->input('qwec8a4s81c818e51'),
-                'description' => $request->input('description'),
+                'priority' => $request->input('priority'),
                 'incident_date' => $request->input('incident_date'),
                 'status' => 'Pendiente',
-            ]);
-            $incident->save();
-
-            $ticket = new Ticket([
-                'category_id' => $request->input('category_id'),
                 'title' => $request->input('title_ticket'),
                 'description' => $request->input('description_ticket'),
-                'status' => 'Pendiente',
             ]);
-            $ticket->save();
-
-            $incident->ticket()->associate($ticket);
             $incident->save();
 
             if ($request->hasFile('file')) {
@@ -117,7 +108,7 @@ class IncidentControllerApi extends Controller
     } catch (\Exception $e) {
         return response()->json([
             'message' => $e->getMessage(),
-            'code' =>Str(Auth::id()) ,
+            'code' => 400 ,
             'status' => 'error',
             'title' => 'Error al crear incidente'
         ], 500);

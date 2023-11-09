@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name', 150);
             $table->boolean('active')->default(true);
+            $table->boolean('is_student')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

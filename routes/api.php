@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\IncidentControllerApi;
+use App\Http\Controllers\Api\EmployeesControllerApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,6 @@ Route::middleware('auth')->group(function () {
 
 });
 Route::post('/incidentes', [IncidentControllerApi::class, 'store'])->name('incident.api.store');
+Route::post('/empleados', [EmployeesControllerApi::class, 'store'])->name('employees.api.store');
+Route::put('/empleados', [EmployeesControllerApi::class, 'update'])->name('employees.api.update');
 

@@ -42,8 +42,13 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label for="description" class="form-label">Descripción</label>
-                                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                                    <label for="priority" class="form-label">Prioridad</label>
+                                    <select class="form-select" id="priority" name="priority" required>
+                                        <option value="Bajo">Bajo</option>
+                                        <option value="Medio">Medio</option>
+                                        <option value="Alto">Alto</option>
+
+                                    </select>
                                 </div>
                                 <div class="mb-3 col-12 col-md-6">
                                     <label for="incident_date" class="form-label">Fecha de Incidente</label>

@@ -5,7 +5,7 @@ use App\Http\Controllers\DataTables\IncidentDataTables;
 use App\Http\Controllers\DataTables\EmployeeDataTables;
 use App\Http\Controllers\DataTables\ItemDataTables;
 use App\Http\Controllers\IncidentController;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\EmployeeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +24,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::resource('empleados', EmployeeController::class);
+
 Route::controller(IncidentController::class)->group(function(){
     Route::get('incidencias', 'index')->name('incidencias.index');
     Route::post('incidencias', 'store')->name('incidencias.store');
@@ -39,10 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/employees/datatables', [EmployeeDataTables::class, 'index'])->name('employees.datatables');
+    Route::get('/employees/list/datatables', [EmployeeDataTables::class, 'list'])->name('employees.list.datatables');
+
     Route::get('/items/datatables', [ItemDataTables::class, 'index'])->name('items.datatables');
     Route::get('/incidents/datatables', [IncidentDataTables::class, 'index'])->name('incidents.datatables');
-    Route::get('/show/ticket/{id}', [TicketController::class, 'show'])->name('show.ticket');
 });
 
 

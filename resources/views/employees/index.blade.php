@@ -7,8 +7,8 @@
         <div class="container-fluid p-0">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="h3 mb-3 text-start">Gestion de Incidencias</h1>
-                <a href="{{ route('incidencias.create') }}" class="btn btn-primary text-end">Nueva Incidencia</a>
+                <h1 class="h3 mb-3 text-start">Gestion de Personal</h1>
+                <a href="{{ route('empleados.create') }}" class="btn btn-primary text-end">Nueva Registro</a>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -20,11 +20,13 @@
                             <table id="incidents-table" class="table">
                                 <thead>
                                     <tr>
-                                        <th>Fecha Incidencia</th>
-                                        <th>Fecha Revision</th>
-                                        <th>Detalle Incidente</th>
-                                        <th>Prioridad</th>
-                                        <th>Estado</th>
+                                        <th>Nombre</th>
+                                        <th>DNI</th>
+                                        <th>Oficio</th>
+                                        <th>Direccion</th>
+                                        <th>Telefono</th>
+                                        <th>Email</th>
+                                        <th>Fecha Nac.</th>
                                         <th class=" no-export">Acciones</th>
                                     </tr>
                                 </thead>
@@ -38,9 +40,9 @@
         </div>
     </main>
     <script>
-        const url_incidencias = '{!! route('incidents.datatables') !!}';
-        const modulo = 'Incidencias';
+        const url_api = '{!! route('employees.list.datatables') !!}';
+        const modulo = 'Empleados';
     </script>
-    <script src="{{ asset('js/incidencias.js') }}"></script>
+    <script src="{{ asset('js/employees.js') }}"></script>
 
 @endsection

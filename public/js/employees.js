@@ -1,15 +1,17 @@
 t = $("#incidents-table").DataTable({
-    ajax: url_incidencias,
+    ajax: url_api,
     columns: [
-        { data: "incident_date", name: "incident_date", orderable: false },
+        { data: "name", name: "name", orderable: false },
         {
-            data: "formatted_incident_review",
-            name: "formatted_incident_review",
+            data: "dni",
+            name: "dni",
             orderable: false,
         },
-        { data: "title", name: "title" },
-        { data: "priority_badge", name: "priority_badge" },
-        { data: "status_badge", name: "status_badge" },
+        { data: "role.name", name: "role.name" },
+        { data: "address", name: "address" },
+        { data: "phone", name: "phone" },
+        { data: "email", name: "email" },
+        { data: "birthdate", name: "birthdate" },
         {
             data: "actions",
             name: "actions",

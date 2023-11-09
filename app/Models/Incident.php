@@ -41,8 +41,9 @@ class Incident extends Model
     {
         return $this->belongsTo(Item::class);
     }
-    public function ticket()
+    public function student()
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(Student::class);
     }
+
 }

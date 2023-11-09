@@ -14,12 +14,9 @@ class Document extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-  
+
     protected $guarded =[];
-    public function ticket()
-    {
-        return $this->belongsTo(Ticket::class, 'ticket_id');
-    }
+   
     protected static function boot()
     {
         parent::boot();

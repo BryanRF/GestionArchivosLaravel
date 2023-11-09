@@ -15,15 +15,16 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name', 150);
             $table->string('dni', 12);
-            $table->string('position', 150);
-            $table->uuid('user_id');
+            $table->uuid('user_id')->nullable();
             $table->boolean('active')->default(true);
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->date('birthdate')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
+            $table->uuid('role_id')->nullable();
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

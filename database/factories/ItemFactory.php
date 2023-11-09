@@ -23,6 +23,8 @@ class ItemFactory extends Factory
             'name' => $this->faker->word, // Genera un nombre aleatorio
             'category_id' => Category::inRandomOrder()->first()->id, // Asocia una categoría existente o crea una nueva y obtén su ID
             'active' => $this->faker->boolean(80), // Genera un valor booleano (80% de probabilidad de ser verdadero)
+            'description' => $this->faker->paragraph,
+
         ];
     }
 }

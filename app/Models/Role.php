@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Role extends Model
-{ protected $guarded =[];
+{
+
+    use HasFactory;
+    protected $guarded =[];
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string';
 
-    // protected $fillable = [
-    //     'id',
-    //     'name',
-    //     'active',
-    // ];
+
     protected static function boot()
     {
         parent::boot();

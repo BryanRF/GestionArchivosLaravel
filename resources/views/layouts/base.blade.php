@@ -11,7 +11,7 @@
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="{{ asset('img/logo.svg') }}" />
+    <link rel="shortcut icon" href="{{ asset('img/logo.webp') }}" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
@@ -30,7 +30,6 @@
     </script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
 </head>
@@ -40,7 +39,7 @@
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
                 <a class="sidebar-brand mx-auto" href="index.html">
-                    <img src="{{ asset('img/logo.svg') }}" class="w-100" srcset="">
+                    <img src="{{ asset('img/logo.webp') }}" width="150" class="w-100" srcset="">
                     <br>
                 </a>
 
@@ -62,7 +61,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('incidencias.index') }}">
+                        <a class="sidebar-link" href="{{ route('empleados.index') }}">
                             <i class="align-middle" data-feather="align-left"></i> <span
                                 class="align-middle">Personal</span>
                         </a>
@@ -246,8 +245,7 @@
 
                             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
                                 data-bs-toggle="dropdown">
-                                <img src="{{ asset('img/avatars/avatar.jpg') }}"
-                                    class="avatar img-fluid rounded me-1" alt="User" />
+
                                 @if (auth()->check())
                                     <span class="text-dark">{{ auth()->user()->name }}</span>
                                 @endif
@@ -259,18 +257,16 @@
                                 <a class="dropdown-item" href="#"><i class="align-middle me-1"
                                         data-feather="pie-chart"></i> Analytics</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="index.html"><i class="align-middle me-1"
-                                        data-feather="settings"></i> Settings & Privacy</a>
-                                <a class="dropdown-item" href="#"><i class="align-middle me-1"
-                                        data-feather="help-circle"></i> Help Center</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}">Cerrar Sesion</a>
                             </div>
                         </li>
                     </ul>
                 </div>
             </nav>
 
+
+            <script src="{{ asset('js/script.js') }}"></script>
+            <script src="{{ asset('js/app.js') }}"></script>
             @yield('content')
 
             <footer class="footer">
@@ -305,8 +301,6 @@
             </footer>
         </div>
     </div>
-
-    <script src="{{ asset('js/app.js') }}"></script>
 
 </body>
 

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('incident_id');
+            $table->uuid('incident_id')->nullable();
+            $table->uuid('employees_id')->nullable();
             $table->string('name', 600);
             $table->string('icon')->default('bi bi-file-earmark');
             $table->string('color')->default('btn btn-primary');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->string('file')->nullable();
             $table->foreign('incident_id')->references('id')->on('incidents');
+            $table->foreign('employees_id')->references('id')->on('employees');
         });
     }
 
