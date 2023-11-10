@@ -82,7 +82,7 @@
         </div>
     </main>
     <script>
-        const url_store = '{!! route('employees.api.store') !!}';
+        const url_store = '{!! route('empleados.store') !!}';
         const url_lista = '{!! route('empleados.index') !!}';
     </script>
     <script src="{{ asset('js/create_empleados.js') }}"></script>

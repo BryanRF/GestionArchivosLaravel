@@ -4,8 +4,9 @@ document
         event.preventDefault();
 
         let formData = new FormData(this);
+        console.log(formData);
         fetch(url_update, {
-            method: "PUT",
+            method: "put",
             body: formData,
         })
             .then((response) => {

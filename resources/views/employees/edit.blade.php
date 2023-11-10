@@ -18,67 +18,64 @@
 
                         </div>
                         <div class="card-body">
-                            <form id="form-table" class="row">
-
-                                @csrf
-                                <input type="hidden" id="employee_id" name="employee_id" value="{{ $employee->id }}">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Nombre</label>
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                required value="{{ $employee->name }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="dni" class="form-label">DNI</label>
-                                            <input type="text" class="form-control" id="dni" name="dni"
-                                                required value="{{ $employee->dni }}">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="address" class="form-label">Dirección</label>
-                                            <input type="text" class="form-control" id="address" name="address"
-                                                value="{{ $employee->address }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="role_id" class="form-label">Oficio</label>
-                                            <select class="form-select" id="role_id" name="role_id" required>
-                                                @foreach ($roles as $data)
-                                                    <option value="{{ $data->id }}"
-                                                        {{ $data->id == $employee->role_id ? 'selected' : '' }}>
-                                                        {{ $data->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                            {!! Form::open([
+                                'route' => ['empleados.update', $employee],
+                                'method' => 'put',
+                                'class' => 'row',
+                            ]) !!}
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
+                            <input type="hidden" id="employee_id" name="employee_id" value="{{ $employee->id }}">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        {!! Form::label('name', 'Nombre', ['class' => 'form-label']) !!}
+                                        {!! Form::text('name', $employee->name, ['class' => 'form-control', 'required']) !!}
                                     </div>
-                                    <div class="col-6">
-                                        <div class="mb-3">
-                                            <label for="phone" class="form-label">Teléfono</label>
-                                            <input type="text" class="form-control" id="phone" name="phone"
-                                                value="{{ $employee->phone }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="email" class="form-label">Correo Electrónico</label>
-                                            <input type="email" class="form-control" id="email" name="email"
-                                                value="{{ $employee->email }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
-                                            <input type="date" class="form-control" id="birthdate" name="birthdate"
-                                                value="{{ $employee->birthdate }}">
-                                        </div>
-                                        <div class="mb-3 form-check">
-                                            <input type="checkbox" class="form-check-input" id="has_access"
-                                                name="has_access">
-                                            <label class="form-check-label" for="has_access">Acceso al sistema (Se creara un
-                                                Usuario y se enviada un correo con sus credenciales)</label>
-                                        </div>
+                                    <div class="mb-3">
+                                        {!! Form::label('dni', 'DNI', ['class' => 'form-label']) !!}
+                                        {!! Form::text('dni', $employee->dni, ['class' => 'form-control', 'required']) !!}
+                                    </div>
+                                    <div class="mb-3">
+                                        {!! Form::label('address', 'Dirección', ['class' => 'form-label']) !!}
+                                        {!! Form::text('address', $employee->address, ['class' => 'form-control']) !!}
+                                    </div>
+                                    <div class="mb-3">
+                                        {!! Form::label('role_id', 'Oficio', ['class' => 'form-label']) !!}
+                                        {!! Form::select('role_id', $roles->pluck('name', 'id'), $employee->role_id, [
+                                            'class' => 'form-select',
+                                            'required',
+                                        ]) !!}
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        {!! Form::label('phone', 'Teléfono', ['class' => 'form-label']) !!}
+                                        {!! Form::text('phone', $employee->phone, ['class' => 'form-control']) !!}
+                                    </div>
+                                    <div class="mb-3">
+                                        {!! Form::label('email', 'Correo Electrónico', ['class' => 'form-label']) !!}
+                                        {!! Form::email('email', $employee->email, ['class' => 'form-control']) !!}
+                                    </div>
+                                    <div class="mb-3">
+                                        {!! Form::label('birthdate', 'Fecha de Nacimiento', ['class' => 'form-label']) !!}
+                                        {!! Form::date('birthdate', $employee->birthdate, ['class' => 'form-control']) !!}
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        {!! Form::checkbox('has_access', 1, false, ['class' => 'form-check-input', 'id' => 'has_access']) !!}
+                                        {!! Form::label(
+                                            'has_access',
+                                            'Acceso al sistema (Se creará un Usuario y se enviará un correo con sus credenciales)',
+                                            ['class' => 'form-check-label'],
+                                        ) !!}
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
+                            <div class="mb-3">
+                                {!! Form::button('Guardar', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
+                            </div>
+                            {!! Form::close() !!}
+
 
 
                         </div>
@@ -88,10 +85,6 @@
 
         </div>
     </main>
-    <script>
-        const url_update = '{!! route('employees.api.update') !!}';
-        const url_lista = '{!! route('empleados.index') !!}';
-    </script>
-    <script src="{{ asset('js/update_empleados.js') }}"></script>
+
 
 @endsection

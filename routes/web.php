@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('empleados', EmployeeController::class);
+
 
 Route::controller(IncidentController::class)->group(function(){
     Route::get('incidencias', 'index')->name('incidencias.index');
@@ -38,12 +38,15 @@ Route::controller(IncidentController::class)->group(function(){
 })->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
+    Route::resource('empleados', EmployeeController::class);
+Route::resource('incidencias', IncidentController::class);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/employees/datatables', [EmployeeDataTables::class, 'index'])->name('employees.datatables');
-    Route::get('/employees/list/datatables', [EmployeeDataTables::class, 'list'])->name('employees.list.datatables');
+    Route::get('/empleados/datatables', [EmployeeDataTables::class, 'index'])->name('employees.datatables');
+    Route::get('/empleados/list/datatables', [EmployeeDataTables::class, 'list'])->name('employees.list.datatables');
 
     Route::get('/items/datatables', [ItemDataTables::class, 'index'])->name('items.datatables');
     Route::get('/incidents/datatables', [IncidentDataTables::class, 'index'])->name('incidents.datatables');
@@ -53,5 +56,19 @@ Route::middleware('auth')->group(function () {
 
 
 
+
+
+// Route::put('/empleados/{id}', [EmployeesControllerApi::class, 'update'])->name('employees.api.update');
+// Route::middleware('auth')->group(function () {
+//     Route::get('/categories', [CategoryController::class, 'index']);
+//     Route::post('/categories', [CategoryController::class, 'store']);
+//     Route::get('/categories/{id}', [CategoryController::class, 'show']);
+//     Route::put('/categories/{id}', [CategoryController::class, 'update']);
+//     Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+
+// });
+// Route::post('/incidentes', [IncidentControllerApi::class, 'store'])->name('incident.api.store');
+
+// Route::post('/empleados', [EmployeesControllerApi::class, 'store'])->name('employees.api.store');
 
 require __DIR__.'/auth.php';

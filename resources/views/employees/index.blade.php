@@ -39,6 +39,14 @@
 
         </div>
     </main>
+    @if (session()->has('success'))
+        <script>
+            Toast.fire({
+                icon: 'success',
+                title: "{{ session('success') }}"
+            })
+        </script>
+    @endif
     <script>
         const url_api = '{!! route('employees.list.datatables') !!}';
         const modulo = 'Empleados';
