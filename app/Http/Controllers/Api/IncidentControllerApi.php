@@ -18,7 +18,28 @@ class IncidentControllerApi extends Controller
     {
         //
     }
+    public function review(Request $request, $id)
+    {
+        try {
+            $incident = Incident::findOrFail($id);
 
+            $incident->update([
+                'status' => 'Revisado',
+                'incident_review' => now(),
+                'review_notes' => $request->notes
+            ]);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Incidencia revisada correctamente'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      */

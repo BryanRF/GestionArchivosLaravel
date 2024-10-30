@@ -11,7 +11,7 @@
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="{{ asset('img/logo.webp') }}" />
+    <link rel="shortcut icon" href="{{ asset('img/logos.svg') }}" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
@@ -41,7 +41,7 @@
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
                 <a class="sidebar-brand mx-auto" href="index.html">
-                    <img src="{{ asset('img/logo.webp') }}" width="150" class="w-100" srcset="">
+                    <img src="{{ asset('img/logos.svg') }}" width="150" class="w-100" srcset="">
                     <br>
                 </a>
 

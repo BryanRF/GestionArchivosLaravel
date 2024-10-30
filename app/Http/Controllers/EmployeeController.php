@@ -25,6 +25,16 @@ class EmployeeController extends Controller
         $roles=Role::where('is_student',false)->get();
         return view('employees.edit',compact('roles','employee'));
     }
+    public function show($id)
+    {
+        try {
+            $employee = Employee::findOrFail($id);
+            return view('employees.show', compact('employee'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Empleado no encontrado: ' . $e->getMessage());
+        }
+    }
+
     public function store(Request $request)
     {
         try {

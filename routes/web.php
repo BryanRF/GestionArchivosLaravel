@@ -6,6 +6,7 @@ use App\Http\Controllers\DataTables\EmployeeDataTables;
 use App\Http\Controllers\DataTables\ItemDataTables;
 use App\Http\Controllers\IncidentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\Api\IncidentControllerApi;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,16 +46,18 @@ Route::resource('incidencias', IncidentController::class);
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/empleados/datatables', [EmployeeDataTables::class, 'index'])->name('employees.datatables');
-    Route::get('/empleados/list/datatables', [EmployeeDataTables::class, 'list'])->name('employees.list.datatables');
 
+    Route::get('/employees/list/datatables', [EmployeeDataTables::class, 'list'])
+    ->name('employees.list.datatables');
+    Route::post('/incidents/{id}/review', [IncidentControllerApi::class, 'review'])
+    ->name('incidents.review');
+
+    Route::get('employees/datatables', [EmployeeDataTables::class, 'index'])->name('employees.datatables');
+Route::get('/items/datatables', [ItemDataTables::class, 'index'])
+    ->name('items.datatables');
     Route::get('/items/datatables', [ItemDataTables::class, 'index'])->name('items.datatables');
     Route::get('/incidents/datatables', [IncidentDataTables::class, 'index'])->name('incidents.datatables');
 });
-
-
-
-
 
 
 
@@ -70,5 +73,9 @@ Route::resource('incidencias', IncidentController::class);
 // Route::post('/incidentes', [IncidentControllerApi::class, 'store'])->name('incident.api.store');
 
 // Route::post('/empleados', [EmployeesControllerApi::class, 'store'])->name('employees.api.store');
+//
+
+
+
 
 require __DIR__.'/auth.php';

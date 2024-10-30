@@ -29,7 +29,11 @@ class IncidentDataTables extends Controller
 
         return datatables()->collection($data)
         ->addColumn('actions', function ($data) {
-            return '<a href="#" class="btn btn-sm "  title="Revisar"><i class="bi bi-eye"></i> </a><a href="#" class="btn btn-sm" title="eliminar"><i class="bi bi-trash"></i> </a>';
+            $showUrl = route('incidencias.show', $data->id);
+            $reviewButton = $data->status === 'Pendiente'
+                ? '<button onclick="reviewIncident(\''.$data->id.'\')" class="btn btn-sm" title="Revisar"><i class="bi bi-check-circle"></i></button>'
+                : '';
+            return '<a href="'.$showUrl.'" class="btn btn-sm" title="Ver"><i class="bi bi-eye"></i></a>' . $reviewButton;
         })
 
 

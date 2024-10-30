@@ -69,6 +69,12 @@ $("#verEmpleados").on("click", function () {
                 },
             });
         },
+        error: function (xhr, status, error) {
+            Toast.fire({
+                icon: "error",
+                title: "Error al cargar empleados: " + error,
+            });
+        },
     });
 });
 

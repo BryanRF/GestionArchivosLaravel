@@ -104,7 +104,7 @@
     <script>
         const url_empleados = '{!! route('employees.datatables') !!}';
         const url_items = '{!! route('items.datatables') !!}';
-        const url_store = '{!! route('incident.api.store') !!}';
+        const url_store = '{!! route('incidencias.create') !!}';
         const url_lista = '{!! route('incidencias.index') !!}';
     </script>
     <script src="{{ asset('js/create_incidencias.js') }}"></script>

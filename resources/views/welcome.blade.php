@@ -857,7 +857,7 @@
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="flex justify-center">
-                <img width="150" src="{{ asset('img/logo.webp') }}" class="w-100" srcset="">
+                <img width="150" src="{{ asset('img/logos.svg') }}" class="w-100" srcset="">
             </div>
 
             <div class="mt-16">

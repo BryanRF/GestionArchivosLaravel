@@ -41,6 +41,7 @@
         const url_incidencias = '{!! route('incidents.datatables') !!}';
         const modulo = 'Incidencias';
     </script>
+     <script src="{{ asset('js/review_incident.js') }}"></script>
     <script src="{{ asset('js/incidencias.js') }}"></script>
 
 @endsection

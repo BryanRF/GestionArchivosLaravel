@@ -24,10 +24,10 @@ class IncidentController extends Controller
 
 
     public function show($id)
-    {
-        $incident = Incident::find($id);
-        return view('incidents.show', compact('incident'));
-    }
+{
+    $incident = Incident::with(['employee', 'item', 'documents'])->findOrFail($id);
+    return view('incidents.show', compact('incident'));
+}
 
 
     public function edit($id)

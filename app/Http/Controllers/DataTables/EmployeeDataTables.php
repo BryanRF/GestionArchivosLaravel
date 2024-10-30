@@ -10,28 +10,28 @@ class EmployeeDataTables extends Controller
 {
     public function index()
     {
-        $employees = Employee::all();
-        return datatables()->collection($employees)
-            ->addColumn('actions', function ($employee) {
-                return '<button class="btn btn-sm btn-primary " onclick=\'SeleccionarEmpleados("'.$employee->id.'","'.$employee->name.'")\'>Seleccionar</button>';
-
-            })
-            ->rawColumns(['actions'])
-            ->toJson();
+        try {
+            $employees = Employee::select('id', 'name', 'dni')->where('active', true)->get();
+            return datatables()->collection($employees)
+                ->addColumn('actions', function ($employee) {
+                    return '<button class="btn btn-sm btn-primary" onclick="SeleccionarEmpleados(\''.$employee->id.'\',\''.$employee->name.'\')">Seleccionar</button>';
+                })
+                ->rawColumns(['actions'])
+                ->toJson();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
-    public function list()
+  // EmployeeDataTables.php necesita actualización
+public function list()
 {
     $employees = Employee::with('role')->get();
-    $employees->transform(function($item, $key) {
-        $item->birthdate = Carbon::parse($item->birthdate)->format('d/m/Y');
-        return $item;
-    });
-
     return datatables()->collection($employees)
         ->addColumn('actions', function ($employee) {
-            $editUrl = route('empleados.edit', ['empleado' => $employee->id]); // URL de edición
-            return '<a href="' . $editUrl . '" class="btn btn-sm" title="Editar"><i class="bi bi-pencil"></i></a><a href="#" class="btn btn-sm" title="eliminar"><i class="bi bi-trash"></i> </a>';
+            $editUrl = route('empleados.edit', $employee->id);
+            return '<a href="'.$editUrl.'" class="btn btn-sm" title="Editar"><i class="bi bi-pencil"></i></a>
+                    <button onclick="deleteItem(\''.$employee->id.'\')" class="btn btn-sm" title="eliminar"><i class="bi bi-trash"></i></button>';
         })
         ->rawColumns(['actions'])
         ->toJson();
